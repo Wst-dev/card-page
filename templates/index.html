@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лучшие банковские продукты</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="header">Лучшие банковские продукты</div>
+
+    <!-- Блок "О нас" -->
+    <section id="about-us" class="section">
+        <h2>О нас</h2>
+        <p>{{ about_us }}</p>
+    </section>
+
+    <!-- Блок "Почему стоит с нами работать" -->
+    <section id="why-work-with-us" class="section">
+        <h2>Почему стоит с нами работать</h2>
+        <p>{{ why_work_with_us }}</p>
+    </section>
+
+    <!-- Блок с продуктами -->
+    <section id="products" class="section">
+        <h2>Лучшие банковские продукты</h2>
+        <div class="products-container">
+            {% for product in products %}
+            <div class="product-card">
+                <img src="{{ product['image'] }}" alt="Product Image" class="product-image">
+                <div class="product-details">
+                    <h3 class="product-title">{{ product['title'] }}</h3>
+                    <p>{{ product['description'] }}</p>
+                    <a href="{{ product['link'] }}" target="_blank" class="product-link">Подробнее</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        Спасибо за выбор!
+    </footer>
+
+    <script src="/static/scripts.js"></script>
+</body>
+</html>
