@@ -23,7 +23,15 @@ class DateBase():
 
     def get_products(self):
         self.cursor.execute('SELECT * FROM Product')
-        return self.cursor.fetchall()
+        products = []
+        for prd in self.cursor.fetchall():
+            products.append({
+            "title": prd[1],
+            "description": prd[2],
+            "image": prd[4],
+            "link": prd[3]
+            })
+        return products
     
     def add_product(self, title, description, link, image):
         # Добавляем нового пользователя
