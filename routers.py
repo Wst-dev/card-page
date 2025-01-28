@@ -3,7 +3,6 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from db import DateBase
-import json
 
 # Создаем приложение FastAPI
 app = FastAPI()
@@ -24,7 +23,6 @@ texts = {
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
-    print(products.get_products())
     # Передача данных о продуктах и текстах в шаблон
     return templates.TemplateResponse(
         "index.html",
@@ -35,3 +33,8 @@ async def read_root(request: Request):
             "why_work_with_us": texts['about']
         }
     )
+@app.post("/add")
+async def add_prd(title:str, desk:str, link:str, image:str|None = None):
+    # Добавление нового товара
+    products.add_product(title, desk, link, image)
+    return {"message":"succes"}
